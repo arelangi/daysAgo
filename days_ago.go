@@ -48,6 +48,7 @@ func GetDateStringFromWordString(refTime time.Time, input string) (out string) {
 	return
 }
 
+//GetDateStringRangeFromWordString takes as input a sentence or word and returns a range of time as start and end
 func GetDateStringRangeFromWordString(refTime time.Time, input string) (start, end string) {
 	input = strings.ToLower(input)
 	switch input {
