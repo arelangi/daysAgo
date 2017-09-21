@@ -14,7 +14,7 @@ func TestGetDateStringFromWordString(t *testing.T) {
 		inputString string
 		expected    string
 	}{
-		{inputTime: time.Date(2008, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "yesterday", expected: "2009-11-09"},
+		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "yesterday", expected: "2009-11-09"},
 		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "today", expected: "2009-11-10"},
 		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "tomorrow", expected: "2009-11-11"},
 		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "day after tomorrow", expected: "2009-11-12"},
