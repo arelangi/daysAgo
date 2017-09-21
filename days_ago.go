@@ -23,6 +23,10 @@ func GetDateStringFromWordString(refTime time.Time, input string) (out string) {
 		out = refTime.AddDate(0, 0, 2).Format(layout)
 	case "day before yesterday":
 		out = refTime.AddDate(0, 0, -2).Format(layout)
+	case "last month", "past month":
+		out = refTime.AddDate(0, -1, 0).Format(layout)
+	case "last year", "past year":
+		out = refTime.AddDate(-1, 0, 0).Format(layout)
 	default:
 		re := regexp.MustCompile("[0-9]+")
 		numArr := re.FindStringSubmatch(input)

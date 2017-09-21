@@ -25,6 +25,10 @@ func TestGetDateStringFromWordString(t *testing.T) {
 		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "last 2 days", expected: "2009-11-08"},
 		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "last 2 months", expected: "2009-09-10"},
 		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "last 2 years", expected: "2007-11-10"},
+		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "last year", expected: "2008-11-10"},
+		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "last month", expected: "2009-10-10"},
+		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "past year", expected: "2008-11-10"},
+		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "past month", expected: "2009-10-10"},
 	}
 
 	for testKey, eachTest := range tests {
