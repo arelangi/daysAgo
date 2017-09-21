@@ -79,6 +79,15 @@ func GetDateStringRangeFromWordString(refTime time.Time, input string) (start, e
 		refTime = now.New(refTime.AddDate(0, 0, -7)).BeginningOfWeek()
 		start = refTime.Format(layout)
 		end = now.New(refTime).EndOfWeek().Format(layout)
+	case "this week":
+		start = now.New(refTime).BeginningOfWeek().Format(layout)
+		end = now.New(refTime).EndOfWeek().Format(layout)
+	case "this month":
+		start = now.New(refTime).BeginningOfMonth().Format(layout)
+		end = now.New(refTime).EndOfMonth().Format(layout)
+	case "this year":
+		start = now.New(refTime).BeginningOfYear().Format(layout)
+		end = now.New(refTime).EndOfYear().Format(layout)
 	default:
 		re := regexp.MustCompile("[0-9]+")
 		numArr := re.FindStringSubmatch(input)

@@ -67,6 +67,10 @@ func TestGetDateStringRangeFromWordString(t *testing.T) {
 		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "past month", expectedStart: "2009-10-01", expectedEnd: "2009-10-31"},
 		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "past week", expectedStart: "2017-09-03", expectedEnd: "2017-09-09"},
 		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "last week", expectedStart: "2017-09-03", expectedEnd: "2017-09-09"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "this week", expectedStart: "2017-09-10", expectedEnd: "2017-09-16"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "this month", expectedStart: "2017-09-01", expectedEnd: "2017-09-30"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "this year", expectedStart: "2017-01-01", expectedEnd: "2017-12-31"},
 	}
 
 	for _, eachTest := range tests {
