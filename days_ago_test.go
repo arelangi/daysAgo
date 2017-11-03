@@ -72,7 +72,6 @@ func TestGetDateStringRangeFromWordString(t *testing.T) {
 		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "this month", expectedStart: "2017-09-01", expectedEnd: "2017-09-30"},
 		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "this year", expectedStart: "2017-01-01", expectedEnd: "2017-12-31"},
 
-		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "october", expectedStart: "2017-10-01", expectedEnd: "2017-10-31"},
 		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "january", expectedStart: "2017-01-01", expectedEnd: "2017-01-31"},
 		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "jan", expectedStart: "2017-01-01", expectedEnd: "2017-01-31"},
 
