@@ -1,6 +1,7 @@
 package daysago
 
 import (
+	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -50,7 +51,8 @@ func GetDateStringFromWordString(refTime time.Time, input string) (out string) {
 
 //GetDateStringRangeFromWordString takes as input a sentence or word and returns a range of time as start and end
 func GetDateStringRangeFromWordString(refTime time.Time, input string) (start, end string) {
-	input = strings.ToLower(input)
+	input = strings.TrimSpace(strings.ToLower(input))
+	fmt.Println("Bitch, we are looking at ", input)
 	switch input {
 	case "yesterday":
 		end = refTime.Format(layout)
@@ -88,40 +90,40 @@ func GetDateStringRangeFromWordString(refTime time.Time, input string) (start, e
 	case "this year":
 		start = now.New(refTime).BeginningOfYear().Format(layout)
 		end = now.New(refTime).EndOfYear().Format(layout)
-	case "january", "jan":
+	case "january", "jan", "this january", "this jan":
 		start = now.New(refTime).BeginningOfYear().Format(layout)
 		end = now.New(refTime).BeginningOfYear().AddDate(0, 1, -1).Format(layout)
-	case "february", "feb":
+	case "february", "feb", "this february", "this feb":
 		start = now.New(refTime).BeginningOfYear().AddDate(0, 1, 0).Format(layout)
 		end = now.New(refTime).BeginningOfYear().AddDate(0, 2, -1).Format(layout)
-	case "march", "mar":
+	case "march", "mar", "this march", "this mar":
 		start = now.New(refTime).BeginningOfYear().AddDate(0, 2, 0).Format(layout)
 		end = now.New(refTime).BeginningOfYear().AddDate(0, 3, -1).Format(layout)
-	case "april", "apr":
+	case "april", "apr", "this april", "this apr":
 		start = now.New(refTime).BeginningOfYear().AddDate(0, 3, 0).Format(layout)
 		end = now.New(refTime).BeginningOfYear().AddDate(0, 4, -1).Format(layout)
-	case "may":
+	case "may", "this may":
 		start = now.New(refTime).BeginningOfYear().AddDate(0, 4, 0).Format(layout)
 		end = now.New(refTime).BeginningOfYear().AddDate(0, 5, -1).Format(layout)
-	case "june", "jun":
+	case "june", "jun", "this june", "this jun":
 		start = now.New(refTime).BeginningOfYear().AddDate(0, 5, 0).Format(layout)
 		end = now.New(refTime).BeginningOfYear().AddDate(0, 6, -1).Format(layout)
-	case "july", "jul":
+	case "july", "jul", "this july", "this jul":
 		start = now.New(refTime).BeginningOfYear().AddDate(0, 6, 0).Format(layout)
 		end = now.New(refTime).BeginningOfYear().AddDate(0, 7, -1).Format(layout)
-	case "august", "aug":
+	case "august", "aug", "this august", "this aug":
 		start = now.New(refTime).BeginningOfYear().AddDate(0, 7, 0).Format(layout)
 		end = now.New(refTime).BeginningOfYear().AddDate(0, 8, -1).Format(layout)
-	case "september", "sep":
+	case "september", "sep", "this september", "this sep":
 		start = now.New(refTime).BeginningOfYear().AddDate(0, 8, 0).Format(layout)
 		end = now.New(refTime).BeginningOfYear().AddDate(0, 9, -1).Format(layout)
-	case "october", "oct":
+	case "october", "oct", "this october", "this oct":
 		start = now.New(refTime).BeginningOfYear().AddDate(0, 9, 0).Format(layout)
 		end = now.New(refTime).BeginningOfYear().AddDate(0, 10, -1).Format(layout)
-	case "november", "nov":
+	case "november", "nov", "this november", "this nov":
 		start = now.New(refTime).BeginningOfYear().AddDate(0, 10, 0).Format(layout)
 		end = now.New(refTime).BeginningOfYear().AddDate(0, 11, -1).Format(layout)
-	case "december", "dec":
+	case "december", "dec", "this december", "this dec":
 		start = now.New(refTime).BeginningOfYear().AddDate(0, 11, 0).Format(layout)
 		end = now.New(refTime).BeginningOfYear().AddDate(0, 12, -1).Format(layout)
 	default:
