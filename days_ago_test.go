@@ -71,6 +71,41 @@ func TestGetDateStringRangeFromWordString(t *testing.T) {
 		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "this week", expectedStart: "2017-09-10", expectedEnd: "2017-09-16"},
 		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "this month", expectedStart: "2017-09-01", expectedEnd: "2017-09-30"},
 		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "this year", expectedStart: "2017-01-01", expectedEnd: "2017-12-31"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "october", expectedStart: "2017-10-01", expectedEnd: "2017-10-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "january", expectedStart: "2017-01-01", expectedEnd: "2017-01-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "jan", expectedStart: "2017-01-01", expectedEnd: "2017-01-31"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "february", expectedStart: "2017-02-01", expectedEnd: "2017-02-28"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "feb", expectedStart: "2017-02-01", expectedEnd: "2017-02-28"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "march", expectedStart: "2017-03-01", expectedEnd: "2017-03-31"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "april", expectedStart: "2017-04-01", expectedEnd: "2017-04-30"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "apr", expectedStart: "2017-04-01", expectedEnd: "2017-04-30"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "may", expectedStart: "2017-05-01", expectedEnd: "2017-05-31"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "june", expectedStart: "2017-06-01", expectedEnd: "2017-06-30"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "jun", expectedStart: "2017-06-01", expectedEnd: "2017-06-30"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "july", expectedStart: "2017-07-01", expectedEnd: "2017-07-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "jul", expectedStart: "2017-07-01", expectedEnd: "2017-07-31"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "august", expectedStart: "2017-08-01", expectedEnd: "2017-08-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "aug", expectedStart: "2017-08-01", expectedEnd: "2017-08-31"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "september", expectedStart: "2017-09-01", expectedEnd: "2017-09-30"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "sep", expectedStart: "2017-09-01", expectedEnd: "2017-09-30"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "october", expectedStart: "2017-10-01", expectedEnd: "2017-10-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "oct", expectedStart: "2017-10-01", expectedEnd: "2017-10-31"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "november", expectedStart: "2017-11-01", expectedEnd: "2017-11-30"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "nov", expectedStart: "2017-11-01", expectedEnd: "2017-11-30"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "december", expectedStart: "2017-12-01", expectedEnd: "2017-12-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "dec", expectedStart: "2017-12-01", expectedEnd: "2017-12-31"},
 	}
 
 	for _, eachTest := range tests {
