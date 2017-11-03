@@ -88,6 +88,42 @@ func GetDateStringRangeFromWordString(refTime time.Time, input string) (start, e
 	case "this year":
 		start = now.New(refTime).BeginningOfYear().Format(layout)
 		end = now.New(refTime).EndOfYear().Format(layout)
+	case "january", "jan":
+		start = now.New(refTime).BeginningOfYear().Format(layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(0, 1, -1).Format(layout)
+	case "february", "feb":
+		start = now.New(refTime).BeginningOfYear().AddDate(0, 1, 0).Format(layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(0, 2, -1).Format(layout)
+	case "march", "mar":
+		start = now.New(refTime).BeginningOfYear().AddDate(0, 2, 0).Format(layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(0, 3, -1).Format(layout)
+	case "april", "apr":
+		start = now.New(refTime).BeginningOfYear().AddDate(0, 3, 0).Format(layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(0, 4, -1).Format(layout)
+	case "may":
+		start = now.New(refTime).BeginningOfYear().AddDate(0, 4, 0).Format(layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(0, 5, -1).Format(layout)
+	case "june", "jun":
+		start = now.New(refTime).BeginningOfYear().AddDate(0, 5, 0).Format(layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(0, 6, -1).Format(layout)
+	case "july", "jul":
+		start = now.New(refTime).BeginningOfYear().AddDate(0, 6, 0).Format(layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(0, 7, -1).Format(layout)
+	case "august", "aug":
+		start = now.New(refTime).BeginningOfYear().AddDate(0, 7, 0).Format(layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(0, 8, -1).Format(layout)
+	case "september", "sep":
+		start = now.New(refTime).BeginningOfYear().AddDate(0, 8, 0).Format(layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(0, 9, -1).Format(layout)
+	case "october", "oct":
+		start = now.New(refTime).BeginningOfYear().AddDate(0, 9, 0).Format(layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(0, 10, -1).Format(layout)
+	case "november", "nov":
+		start = now.New(refTime).BeginningOfYear().AddDate(0, 10, 0).Format(layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(0, 11, -1).Format(layout)
+	case "december", "dec":
+		start = now.New(refTime).BeginningOfYear().AddDate(0, 11, 0).Format(layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(0, 12, -1).Format(layout)
 	default:
 		re := regexp.MustCompile("[0-9]+")
 		numArr := re.FindStringSubmatch(input)
