@@ -1,7 +1,6 @@
 package daysago
 
 import (
-	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -51,8 +50,8 @@ func GetDateStringFromWordString(refTime time.Time, input string) (out string) {
 
 //GetDateStringRangeFromWordString takes as input a sentence or word and returns a range of time as start and end
 func GetDateStringRangeFromWordString(refTime time.Time, input string) (start, end string) {
-	input = strings.TrimSpace(strings.ToLower(input))
-	fmt.Println("Bitch, we are looking at ", input)
+	var re = regexp.MustCompile(` +`)
+	input = re.ReplaceAllString(strings.ToLower(strings.TrimSpace(input)), " ")
 	switch input {
 	case "yesterday":
 		end = refTime.Format(Layout)
@@ -126,6 +125,80 @@ func GetDateStringRangeFromWordString(refTime time.Time, input string) (start, e
 	case "december", "dec", "this december", "this dec":
 		start = now.New(refTime).BeginningOfYear().AddDate(0, 11, 0).Format(Layout)
 		end = now.New(refTime).BeginningOfYear().AddDate(0, 12, -1).Format(Layout)
+	case "past january", "past jan", "last january", "last jan", "prev january", "prev jan":
+		start = now.New(refTime).BeginningOfYear().AddDate(-1, 0, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(-1, 1, -1).Format(Layout)
+	case "past february", "past feb", "last february", "last feb", "prev february", "prev feb":
+		start = now.New(refTime).BeginningOfYear().AddDate(-1, 1, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(-1, 2, -1).Format(Layout)
+	case "last march", "last mar", "prev march", "prev mar", "past march", "past mar":
+		start = now.New(refTime).BeginningOfYear().AddDate(-1, 2, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(-1, 3, -1).Format(Layout)
+	case "last april", "last apr", "prev april", "prev apr", "past april", "past apr":
+		start = now.New(refTime).BeginningOfYear().AddDate(-1, 3, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(-1, 4, -1).Format(Layout)
+	case "last may", "prev may":
+		start = now.New(refTime).BeginningOfYear().AddDate(-1, 4, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(-1, 5, -1).Format(Layout)
+	case "last june", "last jun", "prev june", "prev jun", "past june", "past jun":
+		start = now.New(refTime).BeginningOfYear().AddDate(-1, 5, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(-1, 6, -1).Format(Layout)
+	case "last july", "last jul", "prev july", "prev jul", "past july", "past jul":
+		start = now.New(refTime).BeginningOfYear().AddDate(-1, 6, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(-1, 7, -1).Format(Layout)
+	case "last august", "last aug", "prev august", "prev aug", "past august", "past aug":
+		start = now.New(refTime).BeginningOfYear().AddDate(-1, 7, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(-1, 8, -1).Format(Layout)
+	case "last september", "last sep", "prev september", "prev sep", "past september", "past sep":
+		start = now.New(refTime).BeginningOfYear().AddDate(-1, 8, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(-1, 9, -1).Format(Layout)
+	case "last october", "last oct", "prev october", "prev oct", "past october", "past oct":
+		start = now.New(refTime).BeginningOfYear().AddDate(-1, 9, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(-1, 10, -1).Format(Layout)
+	case "last november", "last nov", "prev november", "prev nov", "past november", "past nov":
+		start = now.New(refTime).BeginningOfYear().AddDate(-1, 10, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(-1, 11, -1).Format(Layout)
+	case "last december", "last dec", "prev december", "prev dec", "past december", "past dec":
+		start = now.New(refTime).BeginningOfYear().AddDate(-1, 11, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(-1, 12, -1).Format(Layout)
+
+	case "next january", "next jan", "coming january", "coming jan", "upcoming january", "upcoming jan":
+		start = now.New(refTime).BeginningOfYear().AddDate(1, 0, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(1, 1, -1).Format(Layout)
+	case "next february", "next feb", "coming february", "coming feb", "upcoming february", "upcoming feb":
+		start = now.New(refTime).BeginningOfYear().AddDate(1, 1, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(1, 2, -1).Format(Layout)
+	case "coming march", "coming mar", "upcoming march", "upcoming mar", "next march", "next mar":
+		start = now.New(refTime).BeginningOfYear().AddDate(1, 2, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(1, 3, -1).Format(Layout)
+	case "coming april", "coming apr", "upcoming april", "upcoming apr", "next april", "next apr":
+		start = now.New(refTime).BeginningOfYear().AddDate(1, 3, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(1, 4, -1).Format(Layout)
+	case "coming may", "upcoming may":
+		start = now.New(refTime).BeginningOfYear().AddDate(1, 4, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(1, 5, -1).Format(Layout)
+	case "coming june", "coming jun", "upcoming june", "upcoming jun", "next june", "next jun":
+		start = now.New(refTime).BeginningOfYear().AddDate(1, 5, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(1, 6, -1).Format(Layout)
+	case "coming july", "coming jul", "upcoming july", "upcoming jul", "next july", "next jul":
+		start = now.New(refTime).BeginningOfYear().AddDate(1, 6, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(1, 7, -1).Format(Layout)
+	case "coming august", "coming aug", "upcoming august", "upcoming aug", "next august", "next aug":
+		start = now.New(refTime).BeginningOfYear().AddDate(1, 7, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(1, 8, -1).Format(Layout)
+	case "coming september", "coming sep", "upcoming september", "upcoming sep", "next september", "next sep":
+		start = now.New(refTime).BeginningOfYear().AddDate(1, 8, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(1, 9, -1).Format(Layout)
+	case "coming october", "coming oct", "upcoming october", "upcoming oct", "next october", "next oct":
+		start = now.New(refTime).BeginningOfYear().AddDate(1, 9, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(1, 10, -1).Format(Layout)
+	case "coming november", "coming nov", "upcoming november", "upcoming nov", "next november", "next nov":
+		start = now.New(refTime).BeginningOfYear().AddDate(1, 10, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(1, 11, -1).Format(Layout)
+	case "coming december", "coming dec", "upcoming december", "upcoming dec", "next december", "next dec":
+		start = now.New(refTime).BeginningOfYear().AddDate(1, 11, 0).Format(Layout)
+		end = now.New(refTime).BeginningOfYear().AddDate(1, 12, -1).Format(Layout)
+
 	default:
 		re := regexp.MustCompile("[0-9]+")
 		numArr := re.FindStringSubmatch(input)
