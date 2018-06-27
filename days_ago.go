@@ -52,6 +52,7 @@ func GetDateStringFromWordString(refTime time.Time, input string) (out string) {
 func GetDateStringRangeFromWordString(refTime time.Time, input string) (start, end string) {
 	var re = regexp.MustCompile(` +`)
 	input = re.ReplaceAllString(strings.ToLower(strings.TrimSpace(input)), " ")
+	refTime = refTime.UTC()
 	switch input {
 	case "yesterday":
 		end = refTime.Format(Layout)
