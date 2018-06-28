@@ -77,6 +77,12 @@ func GetDateStringRangeFromWordString(refTime time.Time, input string) (start, e
 			refTime = now.New(refTime.AddDate(0, -1, 0)).BeginningOfMonth()
 			start = refTime.Format(Layout)
 			end = now.New(refTime).EndOfMonth().Format(Layout)
+		case "ytd", "year to date":
+			start = now.New(refTime).BeginningOfYear().Format(Layout)
+			end = refTime.Format(Layout)
+		case "mtd", "month to date":
+			start = now.New(refTime).BeginningOfMonth().Format(Layout)
+			end = refTime.Format(Layout)
 		case "last year", "past year":
 			refTime = now.New(refTime.AddDate(-1, 0, 0)).BeginningOfYear()
 			start = refTime.Format(Layout)
@@ -219,7 +225,60 @@ func GetDateStringRangeFromWordString(refTime time.Time, input string) (start, e
 					refTime = now.New(refTime.AddDate(-num, 0, 0)).BeginningOfYear()
 					start = refTime.Format(Layout)
 					end = refTime.AddDate(num, 0, -1).Format(Layout)
+				} else if regexp.MustCompile("in").Match([]byte(input)) {
+					start, end = GetDateStringRangeFromWordString(refTime, regexp.MustCompile("in").ReplaceAllString(input, ""))
+				} else if regexp.MustCompile("for").Match([]byte(input)) {
+					start, end = GetDateStringRangeFromWordString(refTime, regexp.MustCompile("for").ReplaceAllString(input, ""))
+				} else if strings.Contains(input, "jan") {
+					refTime = time.Date(num, 1, 1, 0, 0, 0, 0, time.UTC)
+					start = refTime.Format(Layout)
+					end = now.New(refTime).EndOfMonth().Format(Layout)
+				} else if strings.Contains(input, "feb") {
+					refTime = time.Date(num, 2, 1, 0, 0, 0, 0, time.UTC)
+					start = refTime.Format(Layout)
+					end = now.New(refTime).EndOfMonth().Format(Layout)
+				} else if strings.Contains(input, "mar") {
+					refTime = time.Date(num, 3, 1, 0, 0, 0, 0, time.UTC)
+					start = refTime.Format(Layout)
+					end = now.New(refTime).EndOfMonth().Format(Layout)
+				} else if strings.Contains(input, "apr") {
+					refTime = time.Date(num, 4, 1, 0, 0, 0, 0, time.UTC)
+					start = refTime.Format(Layout)
+					end = now.New(refTime).EndOfMonth().Format(Layout)
+				} else if strings.Contains(input, "may") {
+					refTime = time.Date(num, 5, 1, 0, 0, 0, 0, time.UTC)
+					start = refTime.Format(Layout)
+					end = now.New(refTime).EndOfMonth().Format(Layout)
+				} else if strings.Contains(input, "jun") {
+					refTime = time.Date(num, 6, 1, 0, 0, 0, 0, time.UTC)
+					start = refTime.Format(Layout)
+					end = now.New(refTime).EndOfMonth().Format(Layout)
+				} else if strings.Contains(input, "jul") {
+					refTime = time.Date(num, 7, 1, 0, 0, 0, 0, time.UTC)
+					start = refTime.Format(Layout)
+					end = now.New(refTime).EndOfMonth().Format(Layout)
+				} else if strings.Contains(input, "aug") {
+					refTime = time.Date(num, 8, 1, 0, 0, 0, 0, time.UTC)
+					start = refTime.Format(Layout)
+					end = now.New(refTime).EndOfMonth().Format(Layout)
+				} else if strings.Contains(input, "sep") {
+					refTime = time.Date(num, 9, 1, 0, 0, 0, 0, time.UTC)
+					start = refTime.Format(Layout)
+					end = now.New(refTime).EndOfMonth().Format(Layout)
+				} else if strings.Contains(input, "oct") {
+					refTime = time.Date(num, 10, 1, 0, 0, 0, 0, time.UTC)
+					start = refTime.Format(Layout)
+					end = now.New(refTime).EndOfMonth().Format(Layout)
+				} else if strings.Contains(input, "nov") {
+					refTime = time.Date(num, 11, 1, 0, 0, 0, 0, time.UTC)
+					start = refTime.Format(Layout)
+					end = now.New(refTime).EndOfMonth().Format(Layout)
+				} else if strings.Contains(input, "dec") {
+					refTime = time.Date(num, 12, 1, 0, 0, 0, 0, time.UTC)
+					start = refTime.Format(Layout)
+					end = now.New(refTime).EndOfMonth().Format(Layout)
 				}
+
 			}
 		}
 	} else {
