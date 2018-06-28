@@ -53,6 +53,14 @@ func TestGetDateStringRangeFromWordString(t *testing.T) {
 		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "day before yesterday", expectedStart: "2009-11-08", expectedEnd: "2009-11-10"},
 		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "2 days ago", expectedStart: "2009-11-08", expectedEnd: "2009-11-10"},
 
+		//MTD
+		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "mtd", expectedStart: "2009-11-01", expectedEnd: "2009-11-10"},
+		{inputTime: time.Date(2008, time.February, 28, 23, 0, 0, 0, time.UTC), inputString: "month to date", expectedStart: "2008-02-01", expectedEnd: "2008-02-28"},
+
+		//YTD
+		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "ytd", expectedStart: "2009-01-01", expectedEnd: "2009-11-10"},
+		{inputTime: time.Date(2008, time.February, 28, 23, 0, 0, 0, time.UTC), inputString: "year to date", expectedStart: "2008-01-01", expectedEnd: "2008-02-28"},
+
 		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "2 months ago", expectedStart: "2009-09-01", expectedEnd: "2009-10-31"},
 		{inputTime: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC), inputString: "2 years ago", expectedStart: "2007-01-01", expectedEnd: "2008-12-31"},
 
@@ -226,6 +234,34 @@ func TestGetDateStringRangeFromWordString(t *testing.T) {
 		//Years
 		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "2017", expectedStart: "2017-01-01", expectedEnd: "2017-12-31"},
 		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "2018", expectedStart: "2018-01-01", expectedEnd: "2018-12-31"},
+
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "in 2018", expectedStart: "2018-01-01", expectedEnd: "2018-12-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "for    2018", expectedStart: "2018-01-01", expectedEnd: "2018-12-31"},
+
+		//Month Year
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "Jan 2018", expectedStart: "2018-01-01", expectedEnd: "2018-01-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "January 2018", expectedStart: "2018-01-01", expectedEnd: "2018-01-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "Feb 2018", expectedStart: "2018-02-01", expectedEnd: "2018-02-28"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "February   2020", expectedStart: "2020-02-01", expectedEnd: "2020-02-29"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "Mar 2018", expectedStart: "2018-03-01", expectedEnd: "2018-03-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "March 2018", expectedStart: "2018-03-01", expectedEnd: "2018-03-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "April 2018", expectedStart: "2018-04-01", expectedEnd: "2018-04-30"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "Apr 2018", expectedStart: "2018-04-01", expectedEnd: "2018-04-30"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "May 2018", expectedStart: "2018-05-01", expectedEnd: "2018-05-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "June 2018", expectedStart: "2018-06-01", expectedEnd: "2018-06-30"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "Jun 2018", expectedStart: "2018-06-01", expectedEnd: "2018-06-30"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "July 2018", expectedStart: "2018-07-01", expectedEnd: "2018-07-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "Jul 2018", expectedStart: "2018-07-01", expectedEnd: "2018-07-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "August 2018", expectedStart: "2018-08-01", expectedEnd: "2018-08-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "Aug 2018", expectedStart: "2018-08-01", expectedEnd: "2018-08-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "September 2018", expectedStart: "2018-09-01", expectedEnd: "2018-09-30"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "Sep 2018", expectedStart: "2018-09-01", expectedEnd: "2018-09-30"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "October 2018", expectedStart: "2018-10-01", expectedEnd: "2018-10-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "Oct 2018", expectedStart: "2018-10-01", expectedEnd: "2018-10-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "November 2018", expectedStart: "2018-11-01", expectedEnd: "2018-11-30"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "Nov 2018", expectedStart: "2018-11-01", expectedEnd: "2018-11-30"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "December 2018", expectedStart: "2018-12-01", expectedEnd: "2018-12-31"},
+		{inputTime: time.Date(2017, time.September, 12, 23, 0, 0, 0, time.UTC), inputString: "Dec 2018", expectedStart: "2018-12-01", expectedEnd: "2018-12-31"},
 	}
 
 	for _, eachTest := range tests {
